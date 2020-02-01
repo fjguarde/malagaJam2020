@@ -9,7 +9,7 @@ public class Level_Manager : MonoBehaviour
     private int escenaActiva;
     private int actualQuestionCount = 0, actualPoints = 0;
     private bool gameFiniched = false;
-    public Canvas canvasGameOver, canvasWin;
+    public Canvas canvasGameOver, canvasWin, canvasControl;
 
     // La posición del array corresponde con la posición de la pregunta, el valor indica cuál es la respuesta correcta
     private int[] respuestasCorrectas = { 0, 1, 2, 0, 1, 2 };
@@ -33,6 +33,8 @@ public class Level_Manager : MonoBehaviour
     void Start()
     {
         escenaActiva = SceneManager.GetActiveScene().buildIndex;
+        canvasGameOver.GetComponent<Canvas>().enabled = false;
+        canvasWin.GetComponent<Canvas>().enabled = false;
     }
 
     // Update is called once per frame
@@ -79,12 +81,14 @@ public class Level_Manager : MonoBehaviour
         if (actualPoints > ((respuestasCorrectas.Length - 1) / 2))
         {
             print("HAS GANADO");
+            canvasControl.GetComponent<Canvas>().enabled = false;
             canvasWin.GetComponent<Canvas>().enabled = true;
 
         }
         else
         {
             print("HAS PERDIDO");
+            canvasControl.GetComponent<Canvas>().enabled = false;
             canvasGameOver.GetComponent<Canvas>().enabled = true;
 
         }
