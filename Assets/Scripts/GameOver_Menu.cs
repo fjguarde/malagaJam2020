@@ -12,19 +12,24 @@ public class GameOver_Menu : MonoBehaviour
     void Start()
     {
         level_Manager = GameObject.Find("Level_Manager").GetComponent<Level_Manager>();
-        btn_reset = transform.Find("Btn_Reset").GetComponent<Button>();
-        btn_reset.onClick.AddListener(Btn_reset);
-    }
-
-    private void Btn_reset()
-    {
-        print("-------------->");
-        level_Manager.ReiniciarNivel();
+       // btn_reset = transform.Find("Btn_Reset").GetComponent<Button>();
+        //btn_reset.onClick.AddListener(Btn_reset);
     }
 
     // Update is called once per frame
-    void Update()
+    /**void Update()
     {
-        
-    }
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && level_Manager.GameFiniched)
+        {
+            level_Manager.ReiniciarNivel();
+        }
+
+    }*/
+ 
+    /*private void Btn_reset()
+    {
+        print("-------------->");
+        level_Manager.ReiniciarNivel();
+    }*/
+
 }

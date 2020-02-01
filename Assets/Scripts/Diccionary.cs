@@ -67,11 +67,11 @@ public class Diccionary : MonoBehaviour {
     {
         // Textos para las preguntas del paciente
         dictionaryTextsPatient.Add(0, "1111 Doctor estoy fatal......");
-        dictionaryTextsPatient.Add(1, "2222 Doctor estoy fatal......");
-        dictionaryTextsPatient.Add(2, "3333 Doctor estoy fatal......");
-        dictionaryTextsPatient.Add(3, "4444 Doctor estoy fatal......");
-        dictionaryTextsPatient.Add(4, "5555 Doctor estoy fatal......");
-        dictionaryTextsPatient.Add(5, "");
+        dictionaryTextsPatient.Add(1, "2222 No me estas ayudando......");
+        dictionaryTextsPatient.Add(2, "3333 Tengo tendencias suicidas......");
+        dictionaryTextsPatient.Add(3, "4444 A veces sueño con la muerte......");
+        dictionaryTextsPatient.Add(4, "5555 Claro, ya lo entiendo......");
+        dictionaryTextsPatient.Add(5, "6666 A la mierda!");
 
         // Textos para las repuestas del doctor
         dictionaryTextsDoctor.Add(0, "111");

@@ -38,7 +38,7 @@ public class Player_Control : MonoBehaviour
                 ChangeButtonSelected(buttonSelected);
 
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !levelManager.GameEnding)
             {
                 levelManager.ValidateAnswer(buttonSelected);
                 LoadNextCuestion(levelManager.ActualQuestionCount);
@@ -64,12 +64,18 @@ public class Player_Control : MonoBehaviour
     {
         var tempColor = butons_Options[0].GetComponent<Image>().color;
         tempColor.a = 0;
-        butons_Options[0].GetComponent<Image>().color = tempColor;
-        butons_Options[1].GetComponent<Image>().color = tempColor;
-        butons_Options[2].GetComponent<Image>().color = tempColor;
+         butons_Options[0].transform.Find("Image").GetComponent<Image>().color = tempColor;
+         butons_Options[1].transform.Find("Image").GetComponent<Image>().color = tempColor;
+         butons_Options[2].transform.Find("Image").GetComponent<Image>().color = tempColor;
+
+        /* butons_Options[0].GetComponent<Image>().color = tempColor;
+         butons_Options[1].GetComponent<Image>().color = tempColor;
+         butons_Options[2].GetComponent<Image>().color = tempColor;*/
         tempColor.a = 1f;
-        butons_Options[buttonSelected].GetComponent<Image>().color = tempColor;
-        butons_Options[buttonSelected].GetComponent<Image>().color = Color.green;
+        butons_Options[buttonSelected].transform.Find("Image").GetComponent<Image>().color = tempColor;
+
+        //butons_Options[buttonSelected].GetComponent<Image>().color = tempColor;
+        //butons_Options[buttonSelected].GetComponent<Image>().color = Color.green;
     }
 
     // Calcula la posición, cuando está en el mínimo y se presiona abajo pasa al máximo y viceversa

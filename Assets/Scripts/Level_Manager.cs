@@ -8,8 +8,10 @@ public class Level_Manager : MonoBehaviour
 {
     private int escenaActiva;
     private int actualQuestionCount = 0, actualPoints = 0;
-    private bool gameFiniched = false;
+    private bool gameFiniched = false, gameEnding = false;
     public Canvas canvasGameOver, canvasWin, canvasControl;
+    private Animator animator_Patient;
+    private Animation patient_arm_1;
 
     // La posición del array corresponde con la posición de la pregunta, el valor indica cuál es la respuesta correcta
     private int[] respuestasCorrectas = { 0, 1, 2, 0, 1, 2 };
@@ -29,12 +31,23 @@ public class Level_Manager : MonoBehaviour
         get { return gameFiniched; }
     }
 
+    public bool GameEnding
+    {
+        get { return gameEnding; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         escenaActiva = SceneManager.GetActiveScene().buildIndex;
-        canvasGameOver.GetComponent<Canvas>().enabled = false;
-        canvasWin.GetComponent<Canvas>().enabled = false;
+        if (escenaActiva != 0)
+        {
+            canvasGameOver.GetComponent<Canvas>().enabled = false;
+            canvasWin.GetComponent<Canvas>().enabled = false;
+            animator_Patient = GameObject.Find("GO_Patient").GetComponent<Animator>();
+            //animator_Patient.enabled = false;
+           // patient_arm_1 = GameObject.Find("Resources/Animations/patient_arms_1").GetComponent<Animation>();
+        }
     }
 
     // Update is called once per frame
@@ -45,33 +58,33 @@ public class Level_Manager : MonoBehaviour
 
     public void ValidateAnswer(int buttonSelected)
     {
+        animator_Patient.SetBool("middlePoints", false);
+
         //print("actualQuestionCount  " + actualQuestionCount);
         if (actualQuestionCount < CorrectAnswers.Length -1)
         {
-
             if (CorrectAnswers[actualQuestionCount] == buttonSelected)
             {
-                print("RESPUESTA CORRECTA!!!!");
                 actualPoints += 1;
             }
-            else
-            {
-                print("LA RESPUESTA NOOOO ES CORRECTA :(");
-                //actualPoints -= 1;
-
-
-            }
-            //LoadNextCuestion(actualQuestionCount);
             actualQuestionCount++;
+            // Si Hemos contestado a la mitad de las preguntas
+            if (actualQuestionCount == (respuestasCorrectas.Length - 1) / 2)
+            {
+                ShowAnimationArms_1();
+            }
         }
         else
         {
             print("JUEGO TERMINADO");
-            gameFiniched = true;
+            gameEnding = true;
             CalculateWinOrLose(actualPoints);
         }
+    }
 
-
+    private void ShowAnimationArms_1()
+    {
+        animator_Patient.SetBool("middlePoints", true);
     }
 
     private void CalculateWinOrLose(int actualPoints)
@@ -80,23 +93,52 @@ public class Level_Manager : MonoBehaviour
         print("(respuestasCorrectas.Length - 1 / 2) ---> " + ((respuestasCorrectas.Length - 1) / 2));
         if (actualPoints > ((respuestasCorrectas.Length - 1) / 2))
         {
+            gameEnding = true;
             print("HAS GANADO");
-            canvasControl.GetComponent<Canvas>().enabled = false;
-            canvasWin.GetComponent<Canvas>().enabled = true;
-
+            StartCoroutine(ShowWinCanvas());
         }
         else
         {
+            gameEnding = true;
             print("HAS PERDIDO");
-            canvasControl.GetComponent<Canvas>().enabled = false;
-            canvasGameOver.GetComponent<Canvas>().enabled = true;
-
+            StartCoroutine(ShowGameOver());
         }
     }
 
+    private IEnumerator ShowWinCanvas()
+    {
+        yield return new WaitForSeconds(1f);
+        gameFiniched = true;
+        canvasControl.GetComponent<Canvas>().enabled = false;
+        canvasWin.GetComponent<Canvas>().enabled = true;
+        StartCoroutine(RestartGame());
+
+    }
+
+    private IEnumerator ShowGameOver()
+    {
+       // animator_Patient.enabled = true;
+        //animator_Patient.Rebind();
+        animator_Patient.SetBool("gameOver", true);
+
+        yield return new WaitForSeconds(3f);
+        gameFiniched = true;
+        canvasControl.GetComponent<Canvas>().enabled = false;
+        canvasGameOver.GetComponent<Canvas>().enabled = true;
+        StartCoroutine(RestartGame());
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(3f);
+        ReiniciarNivel();
+
+    }
+
+    // Reinicia el juego para volver a empezar
     public void ReiniciarNivel()
     {
-        CargarNivel(escenaActiva);
+        CargarNivel(0);
     }
 
     public void CargarNivel(int numNivel)
