@@ -14,7 +14,7 @@ public class Level_Manager : MonoBehaviour
     private Animation patient_arm_1;
 
     // La posición del array corresponde con la posición de la pregunta, el valor indica cuál es la respuesta correcta
-    private int[] respuestasCorrectas = { 0, 1, 2, 0, 1, 2 };
+    private int[] respuestasCorrectas = { 0, 2, 1, 1, 0, 2 };
 
     public int[] CorrectAnswers
     {
@@ -45,8 +45,6 @@ public class Level_Manager : MonoBehaviour
             canvasGameOver.GetComponent<Canvas>().enabled = false;
             canvasWin.GetComponent<Canvas>().enabled = false;
             animator_Patient = GameObject.Find("GO_Patient").GetComponent<Animator>();
-            //animator_Patient.enabled = false;
-           // patient_arm_1 = GameObject.Find("Resources/Animations/patient_arms_1").GetComponent<Animation>();
         }
     }
 
@@ -107,9 +105,9 @@ public class Level_Manager : MonoBehaviour
 
     private IEnumerator ShowWinCanvas()
     {
+        canvasControl.GetComponent<Canvas>().enabled = false;
         yield return new WaitForSeconds(1f);
         gameFiniched = true;
-        canvasControl.GetComponent<Canvas>().enabled = false;
         canvasWin.GetComponent<Canvas>().enabled = true;
         StartCoroutine(RestartGame());
 
@@ -119,11 +117,10 @@ public class Level_Manager : MonoBehaviour
     {
        // animator_Patient.enabled = true;
         //animator_Patient.Rebind();
+        canvasControl.GetComponent<Canvas>().enabled = false;
         animator_Patient.SetBool("gameOver", true);
-
         yield return new WaitForSeconds(3f);
         gameFiniched = true;
-        canvasControl.GetComponent<Canvas>().enabled = false;
         canvasGameOver.GetComponent<Canvas>().enabled = true;
         StartCoroutine(RestartGame());
     }

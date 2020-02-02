@@ -66,33 +66,38 @@ public class Diccionary : MonoBehaviour {
     private static void FillDictSpanish()
     {
         // Textos para las preguntas del paciente
-        dictionaryTextsPatient.Add(0, "1111 Doctor estoy fatal......");
-        dictionaryTextsPatient.Add(1, "2222 No me estas ayudando......");
-        dictionaryTextsPatient.Add(2, "3333 Tengo tendencias suicidas......");
-        dictionaryTextsPatient.Add(3, "4444 A veces sueño con la muerte......");
-        dictionaryTextsPatient.Add(4, "5555 Claro, ya lo entiendo......");
-        dictionaryTextsPatient.Add(5, "6666 A la mierda!");
+        dictionaryTextsPatient.Add(0, "Hola doctora, necesito que me ayudes. No sé qué me pasa, estoy muy mal de lo mío.\n"
+        + "¿Qué podría hacer para mejorar?.");
+        dictionaryTextsPatient.Add(1, "No tengo ningún problema en mi vida personal, pero siento un gran vacío interior,\n como si me faltase algo.");
+        dictionaryTextsPatient.Add(2, "No tengo apenas amigos, a veces creo que todo esto es una pesadilla y que pronto despertaré.");
+        dictionaryTextsPatient.Add(3, "Creo que todos piensan que soy un fracasado, por más que me esfuerzo por caerles bien, no lo consigo.");
+        dictionaryTextsPatient.Add(4, "Doctora, ¿Que puedo hacer para salir de este agujero emocional en el que me encuentro?.");
+        dictionaryTextsPatient.Add(5, "Pero Doctora....¿Está segura de que esa es la mejor solución?. No estoy convencido del todo.");
 
         // Textos para las repuestas del doctor
-        dictionaryTextsDoctor.Add(0, "111");
-        dictionaryTextsDoctor.Add(1, "222");
-        dictionaryTextsDoctor.Add(2, "333");
+        dictionaryTextsDoctor.Add(0, "Cuéntame más acerca de tu problema.");
+        dictionaryTextsDoctor.Add(1, "¿Tienes planes para este fin de semana?.");
+        dictionaryTextsDoctor.Add(2, "Yo no te veo tan mal...todos tenemos problemas.");
 
-        dictionaryTextsDoctor.Add(3, "444");
-        dictionaryTextsDoctor.Add(4, "555");
-        dictionaryTextsDoctor.Add(5, "666");
+        dictionaryTextsDoctor.Add(3, "Tienes que salir más a menudo con tus amigos.");
+        dictionaryTextsDoctor.Add(4, "Pedir ayuda ya es un gran paso para mejorar.");
+        dictionaryTextsDoctor.Add(5, "La vida es una oportunidad y deberías tratar de aprovechar cada segundo.");
 
-        dictionaryTextsDoctor.Add(6, "777");
-        dictionaryTextsDoctor.Add(7, "888");
-        dictionaryTextsDoctor.Add(8, "999");
+        dictionaryTextsDoctor.Add(6, "Es más fácil pensar que no es real.");
+        dictionaryTextsDoctor.Add(7, "Es normal sentirse así. Son sentimientos muy comunes.");
+        dictionaryTextsDoctor.Add(8, "Observa tu entorno, ¿te parece lo suficientemente real?.");
 
-        dictionaryTextsDoctor.Add(9, "1000");
-        dictionaryTextsDoctor.Add(10, "1100");
-        dictionaryTextsDoctor.Add(11, "1200");
+        dictionaryTextsDoctor.Add(9, "Tal vez no te esfuerzas lo suficiente.");
+        dictionaryTextsDoctor.Add(10, "No debería de preocuparte la opinión de los demás.");
+        dictionaryTextsDoctor.Add(11, "La gente es malvada por naturaleza.");
 
-        dictionaryTextsDoctor.Add(12, "1300");
-        dictionaryTextsDoctor.Add(13, "1400");
-        dictionaryTextsDoctor.Add(14, "1500");
+        dictionaryTextsDoctor.Add(12, "Encuentra algo que te apasione.");
+        dictionaryTextsDoctor.Add(13, "¡Tómate unas vacaciones!.");
+        dictionaryTextsDoctor.Add(14, "Debemos aumentar su medicación.");
+
+        dictionaryTextsDoctor.Add(15, "Por supuesto. Mi secretario le cobrará a la salida. Gracias por venir.");
+        dictionaryTextsDoctor.Add(16, "Soy una prestigiosa psicóloga, se lo que me hago.");
+        dictionaryTextsDoctor.Add(17, "Estoy completamente segura. Estaré aquí para ayudarte cuando lo necesites.");
     }
 
     public enum TextKey
