@@ -12,6 +12,7 @@ public class Level_Manager : MonoBehaviour
     public Canvas canvasGameOver, canvasWin, canvasControl;
     private Animator animator_Patient;
     private Animation patient_arm_1;
+    private AudioSource audioSource;
 
     // La posición del array corresponde con la posición de la pregunta, el valor indica cuál es la respuesta correcta
     private int[] respuestasCorrectas = { 0, 2, 1, 1, 0, 2 };
@@ -45,6 +46,7 @@ public class Level_Manager : MonoBehaviour
             canvasGameOver.GetComponent<Canvas>().enabled = false;
             canvasWin.GetComponent<Canvas>().enabled = false;
             animator_Patient = GameObject.Find("GO_Patient").GetComponent<Animator>();
+            audioSource = transform.GetComponent<AudioSource>();
         }
     }
 
@@ -118,6 +120,7 @@ public class Level_Manager : MonoBehaviour
        // animator_Patient.enabled = true;
         //animator_Patient.Rebind();
         canvasControl.GetComponent<Canvas>().enabled = false;
+        audioSource.Stop();
         animator_Patient.SetBool("gameOver", true);
         yield return new WaitForSeconds(3f);
         gameFiniched = true;
